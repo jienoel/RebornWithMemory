@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Obj : MonoBehaviour
 {
-    void Awake()
+    public virtual void Awake()
     {
         var shdowPrefab = Resources.Load<GameObject>("shadow");
         GameObject.Instantiate(shdowPrefab, transform);

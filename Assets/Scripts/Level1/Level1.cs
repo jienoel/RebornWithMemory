@@ -7,6 +7,7 @@ public class Level1 : MonoBehaviour {
     public Level1BastOther bast_other;
     public float zoom = 2f;
     private Level1Other[] others;
+
     void Awake()
     {
         player.gameObject.SetActive(true);

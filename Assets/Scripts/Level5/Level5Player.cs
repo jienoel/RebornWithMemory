@@ -8,8 +8,9 @@ public class Level5Player : Obj
     
     private Rigidbody2D rb;
 
-    void Awake()
+    public override void Awake()
     {
+        base.Awake();
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
     }
