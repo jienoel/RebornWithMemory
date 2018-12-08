@@ -63,10 +63,13 @@ public class Tutor : MonoBehaviour
 		}
 		flyNeeds.timeout = needsSpan;
 		flyNeeds.ProcessNeeds( needTypes );
+		
 	}
 
 	void OnFinish()
 	{
+		flyNeeds.StopNeeds();
+		OnHit();
 		Invoke( "GenerateNeeds", generateInterval );
 	}
 
@@ -82,13 +85,13 @@ public class Tutor : MonoBehaviour
 
 	void OnFlyHit(Fly fly)
 	{
-		Debug.Log( "On target Fly Hit:" +fly.caterType+"   "+fly.flyObjType );
+		//Debug.Log( "On target Fly Hit:" +fly.caterType+"   "+fly.flyObjType );
 		bool hit = false;
 		if( fly.caterType == CasterType.player && flyNeeds.OnFit( fly.flyObjType ))
 		{
 			hit = true;
 			//拉近距离
-			OnHit();
+			//OnHit();
 		}
 		else
 		{

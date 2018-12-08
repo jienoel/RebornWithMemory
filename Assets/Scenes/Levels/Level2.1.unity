@@ -1936,7 +1936,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1039868709}
   - component: {fileID: 1039868710}
-  - component: {fileID: 1039868711}
   m_Layer: 0
   m_Name: "\u4E09\u89D2\u5F62"
   m_TagString: Untagged
@@ -2003,25 +2002,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1039868711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1039868708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd1b688b6c4314224aa626244dd98751, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  flyObjType: 0
-  caterType: 0
-  t: 1
-  deltaDis: 0.1
-  gravity: -1
-  dropSpeed: 1
-  isDrop: 0
 --- !u!1 &1040092819
 GameObject:
   m_ObjectHideFlags: 0
@@ -3149,7 +3129,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1559902130}
   - component: {fileID: 1559902131}
-  - component: {fileID: 1559902132}
   m_Layer: 0
   m_Name: "\u4E09\u89D2\u5F62"
   m_TagString: Untagged
@@ -3216,25 +3195,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1559902132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1559902129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd1b688b6c4314224aa626244dd98751, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  flyObjType: 0
-  caterType: 0
-  t: 1
-  deltaDis: 0.1
-  gravity: -1
-  dropSpeed: 1
-  isDrop: 0
 --- !u!1 &1595457234
 GameObject:
   m_ObjectHideFlags: 0
@@ -3244,7 +3204,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1595457235}
   - component: {fileID: 1595457236}
-  - component: {fileID: 1595457237}
   m_Layer: 0
   m_Name: "\u4E09\u89D2\u5F62"
   m_TagString: Untagged
@@ -3311,25 +3270,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1595457237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1595457234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd1b688b6c4314224aa626244dd98751, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  flyObjType: 0
-  caterType: 0
-  t: 1
-  deltaDis: 0.1
-  gravity: -1
-  dropSpeed: 1
-  isDrop: 0
 --- !u!1 &1635712513
 GameObject:
   m_ObjectHideFlags: 0
@@ -3486,6 +3426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeout: 0
+  showInterval: 0.3
   needsType: []
   isFinished: 0
   isStarted: 0

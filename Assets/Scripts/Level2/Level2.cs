@@ -48,7 +48,7 @@ public class Level2:MonoBehaviour
 
 	public void OnFlyIconClick(FlyObjType flyObjType)
 	{
-		Debug.Log( "On Fly object click:"+flyObjType );
+//		Debug.Log( "On Fly object click:"+flyObjType );
 		player.CastFlyObject( flyObjType );
 	}
 

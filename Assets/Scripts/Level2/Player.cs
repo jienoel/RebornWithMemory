@@ -44,7 +44,14 @@ public class Player : MonoBehaviour
 			targetPos.y += yUpSpeed;
 			targetPos.x += xRightSpeed;
 		}
-		
+		else
+		{
+			targetStonePos.x -= xRightSpeed;
+			targetStonePos.y -= yUpSpeed;
+			targetPos.y -= yUpSpeed;
+			targetPos.x -= xRightSpeed;
+		}
+
 	}
 
 	private void Update()
