@@ -33,6 +33,8 @@ public class Tutor : MonoBehaviour
 	public int lockFlyIndex;
 
 	public Player autoSpawnPlayer;
+
+	public bool needAutoSpawn;
     // Use this for initialization
     void Start ()
 	{
@@ -43,9 +45,10 @@ public class Tutor : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
+		
 		if( !Level2.Instance.isLevelFinished )
 		{
-			if( Vector3.Distance( baseStone.position, targetStonePos ) > deltaPos )
+			if(Vector3.Distance( baseStone.position, targetStonePos ) > deltaPos )
 				baseStone.position = Vector3.Lerp( baseStone.position, targetStonePos, Time.deltaTime * speed );
 			/*if( Vector3.Distance( transform.position, targetPos ) > deltaPos )
 				transform.position = Vector3.Lerp( transform.position, targetPos, Time.deltaTime * speed );*/
@@ -86,7 +89,7 @@ public class Tutor : MonoBehaviour
 			lockFlyIndex = flyIndex;Debug.Log( Time.realtimeSinceStartup + "   " + "0000000----------------->generate" +flyIndex );
 			flyNeeds.OnSpawnFinished = () =>
 			{
-				if( autoSpawnPlayer != null )
+				if(needAutoSpawn && autoSpawnPlayer != null )
 				{
 					autoSpawnPlayer.AutoSpawn( needTypes );
 				}
@@ -155,6 +158,10 @@ public class Tutor : MonoBehaviour
 		else
 		{
 			hit = flyNeeds.OnFit( fly.flyObjType , true );
+			if( hit )
+			{
+				targetStonePos.y += yUpSpeed;
+			}
 		}
 		fly.OnHit(hit);
 		
@@ -162,15 +169,19 @@ public class Tutor : MonoBehaviour
 
 	void OnHit()
 	{
-		Vector3 pos = targetStonePos;
-		Vector3 tutorPos = targetPos;
-		pos.x += xRightSpeed;
-		pos.y += yUpSpeed;
-		tutorPos.x += xRightSpeed;
-		tutorPos.y += yUpSpeed;
-		targetStonePos = pos;
-		targetPos = tutorPos;
-		Level2.Instance.player.GetFlyResponse( true );
+		if( Level2.Instance.currDis > 0.3f )
+		{
+			Vector3 pos = targetStonePos;
+			Vector3 tutorPos = targetPos;
+			pos.x += xRightSpeed;
+			pos.y += yUpSpeed;
+			tutorPos.x += xRightSpeed;
+			tutorPos.y += yUpSpeed;
+			targetStonePos = pos;
+			targetPos = tutorPos;
+			Level2.Instance.player.GetFlyResponse( true );
+		}
+		
 	}
 
 	void OnMiss()

@@ -41,10 +41,14 @@ public class Player : MonoBehaviour
 	{
 		if( hit )
 		{
-			targetStonePos.x += xRightSpeed;
-			targetStonePos.y += yUpSpeed;
-			targetPos.y += yUpSpeed;
-			targetPos.x += xRightSpeed;
+			if( Level2.Instance.currDis > 0.3f )
+			{
+				targetStonePos.x += xRightSpeed;
+				targetStonePos.y += yUpSpeed;
+				targetPos.y += yUpSpeed;
+				targetPos.x += xRightSpeed;
+			}
+			
 		}
 		else
 		{
@@ -60,7 +64,7 @@ public class Player : MonoBehaviour
 	{
 		if( !Level2.Instance.isLevelFinished )
 		{
-			if( Vector3.Distance( baseStore.position, targetStonePos ) > deltaPos )
+			if(Vector3.Distance( baseStore.position, targetStonePos ) > deltaPos )
 			{
 				baseStore.position = Vector3.Lerp( baseStore.position, targetStonePos, Time.deltaTime*speed );
 			}
