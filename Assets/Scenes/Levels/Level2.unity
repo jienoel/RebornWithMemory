@@ -3455,6 +3455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetArea: {fileID: 534045860}
   baseStone: {fileID: 2011065305}
+<<<<<<< HEAD
   iconPoses:
   - {fileID: 1947489315}
   - {fileID: 1710350488}
@@ -3465,6 +3466,10 @@ MonoBehaviour:
   - {fileID: 663742252}
   - {fileID: 1247958541}
   - {fileID: 1495553349}
+=======
+  iconPoses: []
+  iconWant: []
+>>>>>>> 306371206238eb7c0112b2c584f4536dbbc4211f
   yUpSpeed: 0.02
   xRightSpeed: -0.1
   targetStonePos: {x: 0, y: 0, z: 0}
