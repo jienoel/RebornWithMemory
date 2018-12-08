@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class Level1Player : MonoBehaviour {
+public class Level1Player : Obj
+{
     public Level1 mgr;
     public float maxSpeed = 3f;
     private Vector3 v;

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level1Other : MonoBehaviour {
+public class Level1Other : Obj
+{
     public Level1 mgr;
     public float force_size = 0.01f;
 

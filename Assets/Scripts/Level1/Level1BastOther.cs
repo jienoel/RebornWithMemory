@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level1BastOther : MonoBehaviour {
+public class Level1BastOther : Obj
+{
     public Level1 mgr;
 	
 	// Update is called once per frame
@@ -13,6 +14,5 @@ public class Level1BastOther : MonoBehaviour {
         {
             Debug.Log("游戏结束");
         }
-
     }
 }
