@@ -51,7 +51,7 @@ public class PlayerShadow : MonoBehaviour
 
         var d = transform.position - lightGo.transform.position;
         var offset = d.normalized * Mathf.Clamp(d.magnitude * y, minY, maxY) * scale;
-        offset.y = -Mathf.Clamp(Mathf.Abs(offset.y), minY, maxY);
+        offset.y = -Mathf.Clamp(Mathf.Abs(offset.y), minY * scale, maxY * scale);
         offset.x = Mathf.Clamp(offset.x, -1, 1);
         var center = transform.position + offset;
 

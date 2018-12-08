@@ -1,27 +1,40 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(PointCloudRegognizer))]
 public class Level3 : MonoBehaviour
 {
     public float GestureScale = 8.0f;
     public Vector2 GestureSpacing = new Vector2( 1.25f, 1.0f );
-    public int MaxGesturesPerRaw = 2;
 
     private bool[] states = {false, false };
     private float time_count = 0;
+
+
+    public bool hasFinded = false;
+
+    public GameObject sceneLoader;
+
+    private Material bgMat;
+    public float animTime = 1f;
+    private float animTimeCount = 0f;
+
+
     PointCloudRegognizer recognizer;
 
     void Awake()
     {
         recognizer = GetComponent<PointCloudRegognizer>();
+        bgMat = transform.Find("bg").GetComponent<SpriteRenderer>().material;
     }
 
     void OnCustomGesture( PointCloudGesture gesture )
     {
+        if (hasFinded)
+        {
+            return;
+        }
         if (recognizer.Templates.Contains(gesture.RecognizedTemplate))
         {
-            gui_text = gesture.RecognizedTemplate.name;
             if(gesture.RecognizedTemplate.name == "zhengfangxing" && !states[0])
             {
                 Debug.Log("正方形");
@@ -39,7 +52,20 @@ public class Level3 : MonoBehaviour
 
     void Update()
     {
-        if(states[0] == false && states[1] == false)
+        if (hasFinded && animTimeCount > -1f)
+        {
+            animTimeCount += Time.deltaTime;
+            animTimeCount = Mathf.Clamp(animTimeCount, 0, animTime);
+            bgMat.SetFloat("_Blend", animTimeCount / animTime);
+
+            if (animTimeCount >= animTime)
+            {
+                animTimeCount = -111;
+                sceneLoader.SetActive(true);
+            }
+        }
+
+        if (states[0] == false && states[1] == false)
         {
             //都没画
             return;
@@ -48,11 +74,11 @@ public class Level3 : MonoBehaviour
         if(states[0] && states[1])
         {
             //都画好了 成功
-            gui_text = "都画好了 成功";
             Debug.Log("都画好了 成功");
 
             states[0] = false;
             states[1] = false;
+            hasFinded = true;
             return;
         }
 
@@ -62,29 +88,9 @@ public class Level3 : MonoBehaviour
         if (time_count <= 0)
         {
             //倒计时结束 失败
-            gui_text = "倒计时结束 失败";
             Debug.Log("倒计时结束 失败");
             states[0] = false;
             states[1] = false;
         }
-
     }
-
-    string gui_text = "";
-    void OnGUI()
-    {
-        GUI.Label(new Rect(0, 0, 100, 50), gui_text);
-    }
-
-    //[UnityEditor.MenuItem("Test/Test")]
-    //public static void Test()
-    //{
-    //    string formater = "  - {{x: {0}, y: {1}}}\n";
-    //    string temp = "";
-    //    for (int i = 0; i < 360; i+= 10)
-    //    {
-    //        temp += string.Format(formater, Mathf.Cos(i * Mathf.Deg2Rad) * 0.5f, Mathf.Sin(i * Mathf.Deg2Rad) * 0.5f);
-    //    }
-    //    Debug.Log(temp);
-    //}
 }

@@ -6,13 +6,12 @@ public class Level1BastOther : Obj
 {
     public Level1 mgr;
 	
-	// Update is called once per frame
 	void Update ()
     {
         var dist = Vector3.Distance(mgr.player.transform.position, transform.position);
-        if(dist < 0.05f)
+        if(dist < mgr.closeDist)
         {
-            Debug.Log("游戏结束");
+            mgr.Find();
         }
     }
 }
