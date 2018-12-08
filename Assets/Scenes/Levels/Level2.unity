@@ -3314,6 +3314,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetArea: {fileID: 534045860}
   baseStone: {fileID: 2011065305}
+  iconPoses: []
+  iconWant: []
   yUpSpeed: 0.02
   xRightSpeed: -0.1
   targetStonePos: {x: 0, y: 0, z: 0}
