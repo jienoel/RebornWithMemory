@@ -10,6 +10,10 @@ public class Level1Player : Obj
 
     void OnDrag(DragGesture gesture)
     {
+        if (mgr.hasFinded)
+        {
+            return;
+        }
         FingerGestures.Finger finger = gesture.Fingers[0];
 
         if (dragFingerIndex == -1 && gesture.Phase == ContinuousGesturePhase.Started)

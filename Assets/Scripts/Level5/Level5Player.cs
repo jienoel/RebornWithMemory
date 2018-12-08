@@ -2,6 +2,7 @@
 
 public class Level5Player : Obj
 {
+    public Level5 mgr;
     public float maxSpeed = 3f;
     int dragFingerIndex = -1;
     Vector2 tapPos = Vector2.zero;
@@ -17,6 +18,11 @@ public class Level5Player : Obj
 
     void OnDrag(DragGesture gesture)
     {
+        if (mgr.hasFinded)
+        {
+            return;
+        }
+
         FingerGestures.Finger finger = gesture.Fingers[0];
 
         if (dragFingerIndex == -1 && gesture.Phase == ContinuousGesturePhase.Started)
