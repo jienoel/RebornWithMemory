@@ -15,4 +15,5 @@
 *.opendb
 *.VC.db
 *.idea/
-Builds/
+[Bb]uild
+Bulid/

@@ -32,7 +32,7 @@ public class Fly : MonoBehaviour
 	public float gravity = -1f;
 	private Rigidbody2D _rigidbody2D;
 
-	private bool fly;
+	private bool isFly;
 
 	private Vector2 velocity;
 
@@ -41,6 +41,10 @@ public class Fly : MonoBehaviour
 	private Vector3 startPos;
 
 	private Vector3 targetPos;
+
+	public float dropSpeed = 1;
+
+	public bool isDrop;
 	// Use this for initialization
 	[ContextMenu("Run")]
 	void DebugRun()
@@ -53,14 +57,20 @@ public class Fly : MonoBehaviour
 		velocity = CalculateSpeed();
 		startTime = 0;
 		startPos = transform.position;
-		fly = true;
+		isFly = true;
 	}
 
 
-	public void OnHit()
+	public void OnHit(bool hit)
 	{
-		Destroy( gameObject );
+		if( hit )
+			Destroy( gameObject );
+		else
+		{
+			isDrop = true;
+		}
 	}
+
 
 	void FlyToTarget()
 	{
@@ -94,7 +104,7 @@ public class Fly : MonoBehaviour
 
 	// Update is called once per frame
 	void Update () {
-		if( fly )
+		if( isFly )
 		{
 			startTime += Time.deltaTime;
 			Vector3 pos = transform.position;
@@ -103,9 +113,19 @@ public class Fly : MonoBehaviour
 			transform.position = pos;
 			if( Vector3.Distance( transform.position , targetPos ) <= deltaDis )
 			{
-				fly = false;
+				isFly = false;
 			}
 
+		}
+		if( isDrop )
+		{
+			Vector3 pos = transform.position;
+			pos.y -= Time.deltaTime * dropSpeed;
+			transform.position = pos;
+			if( transform.position.y <= -120 )
+			{
+				Destroy( gameObject );
+			}
 		}
 	}
 
