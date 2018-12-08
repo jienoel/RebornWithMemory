@@ -1,4 +1,4 @@
-﻿Shader "Blend 2 Textures" { 
+﻿Shader "Sprites/Blend" { 
  
 Properties {
 	_Blend ("Blend", Range (0, 1) ) = 0.5 
