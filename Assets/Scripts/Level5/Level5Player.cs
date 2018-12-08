@@ -20,6 +20,7 @@ public class Level5Player : Obj
     {
         if (mgr.hasFinded)
         {
+            rb.velocity = Vector3.zero;
             return;
         }
 

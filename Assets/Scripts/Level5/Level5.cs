@@ -8,31 +8,42 @@ public class Level5 : MonoBehaviour {
 
     public GameObject endPoint;
 
-    public float closeDist = 0.1f;
-
     public bool hasFinded = false;
 
     public GameObject sceneLoader;
 
+    private Material bgMat;
+    public float animTime = 1f;
+    private float animTimeCount = 0f;
+
     void Awake () {
         player.mgr = this;
+        bgMat = transform.Find("bg").GetComponent<SpriteRenderer>().material;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (hasFinded)
-        {
-            return;
-        }
-
         var pos = Vector3.Lerp(transform.position, player.transform.position, 0.01f);
         pos.z = transform.position.z;
         transform.position = pos;
 
-        if (Vector3.Distance(player.transform.position, endPoint.transform.position) < closeDist)
+        if (!hasFinded && player.transform.position.y > endPoint.transform.position.y)
         {
             hasFinded = true;
             sceneLoader.SetActive(true);
         }
-	}
+
+        if (hasFinded && animTimeCount > -1f)
+        {
+            animTimeCount += Time.deltaTime;
+            animTimeCount = Mathf.Clamp(animTimeCount, 0, animTime);
+            bgMat.SetFloat("_Blend", animTimeCount / animTime);
+
+            if (animTimeCount >= animTime)
+            {
+                animTimeCount = -111;
+                sceneLoader.SetActive(true);
+            }
+        }
+    }
 }
