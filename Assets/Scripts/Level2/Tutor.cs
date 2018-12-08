@@ -7,6 +7,8 @@ public class Tutor : MonoBehaviour
 
 	public TargetArea targetArea;
 	public Transform baseStone;
+    public Transform[] iconPoses;
+    public List<Fly> iconWant;
 	public float yUpSpeed = 0.2f;
 	public float xRightSpeed = 0.2f;
 
@@ -15,8 +17,9 @@ public class Tutor : MonoBehaviour
 	public Vector3 targetPos;
 	public float deltaPos = 0.1f;
 	public float speed = 1;
-	// Use this for initialization
-	void Start ()
+    
+    // Use this for initialization
+    void Start ()
 	{
 		targetArea.onFlyHit += OnFlyHit;
 		targetPos = transform.position;

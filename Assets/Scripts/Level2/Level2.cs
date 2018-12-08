@@ -24,7 +24,9 @@ public class Level2:MonoBehaviour
 	{
 		if( Instance==null )
 			Instance = this;
-	}
+        bgRender.sharedMaterial.SetFloat("_Blend", 0);
+    }
+	
 
 	// Use this for initialization
 	void Start()
@@ -74,6 +76,11 @@ public class Level2:MonoBehaviour
 		if( !isLevelFinished )
 			CheckLevelFinish();
 	}
+
+    void Destroy()
+    {
+        bgRender.sharedMaterial.SetFloat("_Blend", 0);
+    }
 
 	public float currDis = 0;
 	public virtual void CheckLevelFinish()
