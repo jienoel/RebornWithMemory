@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
 
+	public CasterType casterType = CasterType.player;
 	public Fly flyPrefab;
 	public Transform flyPos;
 	public Transform baseStore;
@@ -30,7 +32,7 @@ public class Player : MonoBehaviour
 		fly.gameObject.transform.position = flyPos.position;
 		fly.flyObjType = flyType;
 		fly.gameObject.SetActive( true );
-		fly.caterType = CasterType.player;
+		fly.caterType = casterType;
 		fly.StartFly();
 
 	}
@@ -62,10 +64,34 @@ public class Player : MonoBehaviour
 			{
 				baseStore.position = Vector3.Lerp( baseStore.position, targetStonePos, Time.deltaTime*speed );
 			}
-			if( Vector3.Distance( transform.position, targetPos ) > deltaPos )
+			/*if( Vector3.Distance( transform.position, targetPos ) > deltaPos )
 			{
 				transform.position = Vector3.Lerp( transform.position, targetPos, Time.deltaTime * speed );
-			}
+			}*/
 		}
 	}
+
+	public void OnMoveReady()
+	{
+		Level2.Instance.OnMovePlayerReady();
+	}
+
+	public void AutoSpawn(List<FlyObjType> flyObjTypes)
+	{
+		int i = 0;
+		StartCoroutine( AutoSpawnOnByOne( i, flyObjTypes ) );
+	}
+
+	IEnumerator AutoSpawnOnByOne(int i, List<FlyObjType> flyObjTypes)
+	{
+		yield return new WaitForSeconds( 0.3f );
+		CastFlyObject( flyObjTypes[i++] );
+		if( i < flyObjTypes.Count )
+		{
+			StartCoroutine( AutoSpawnOnByOne( i, flyObjTypes ) );
+		}
+	}
+
+	
 }
+

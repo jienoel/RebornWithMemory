@@ -17,19 +17,24 @@ public class Level2:MonoBehaviour
 	public Action LevelFinished;
 	public bool isLevelFinished;
 	Dictionary<FlyObjType, Fly> flyPreDic = new Dictionary<FlyObjType, Fly>();
-
+	public bool isPlayerReady;
+	public bool isTutorReady;
 	public static Level2 Instance;
-
-	void Awake()
+	public float maxDisX;
+	public float initBlend;
+	public Canvas sceneLoader;
+	
+public virtual	void Awake()
 	{
 		if( Instance==null )
 			Instance = this;
-        bgRender.sharedMaterial.SetFloat("_Blend", 0);
-    }
+        bgRender.sharedMaterial.SetFloat("_Blend", initBlend);
+		
+	}
 	
 
 	// Use this for initialization
-	void Start()
+	public virtual		void Start()
 	{
 		foreach( Fly fly in flyPrefabs )
 		{
@@ -52,7 +57,7 @@ public class Level2:MonoBehaviour
 		player.CastFlyObject( flyObjType );
 	}
 
-	void MakeSureSprite()
+	public  virtual void MakeSureSprite()
 	{
 		bool needSetBlendValue = false;
 		if( playerSide == null )
@@ -71,29 +76,57 @@ public class Level2:MonoBehaviour
 		}
 	}
 
-	private void Update()
+	public	virtual	 void Update()
 	{
-		if( !isLevelFinished )
+		if( !isLevelFinished && isPlayerReady && isTutorReady)
 			CheckLevelFinish();
 	}
 
-    void Destroy()
-    {
-        bgRender.sharedMaterial.SetFloat("_Blend", 0);
+	public	virtual	 void OnDestroy()
+	{
+		Instance = null;
+        bgRender.sharedMaterial.SetFloat("_Blend", initBlend);
     }
 
 	public float currDis = 0;
+
+	public void OnMovePlayerReady()
+	{
+		isPlayerReady = true;
+		tutor.gameObject.SetActive( true );
+	}
+
+	public void OnMoveTutorReady()
+	{
+		isTutorReady = true;
+	}
+
 	public virtual void CheckLevelFinish()
 	{
 		MakeSureSprite();
 		 currDis = Mathf.Max( tutorSide.bounds.min.x - playerSide.bounds.max.x, 0 );
-		bgRender.sharedMaterial.SetFloat( "_Blend",  (distance - currDis)/distance);
-		if( currDis == 0)
+		bgRender.sharedMaterial.SetFloat( "_Blend", GetBlendValue(currDis) );
+		if( currDis == 0 || currDis > maxDisX)
 		{
-			Debug.Log( "Level 2 Success!" );
-			isLevelFinished = true;
+			Debug.Log( "Level 2 Finish:" + (currDis == 0 ? " success" : "fail"));
+			OnLevelFinished(currDis == 0);
 		}
 		
+	}
+
+	public virtual void OnLevelFinished(bool success)
+	{
+		isLevelFinished = true;
+		if( success )
+		{
+			tutor.uiCanvas.gameObject.SetActive( false );
+			sceneLoader.gameObject.SetActive( true );
+		}
+	}
+
+	public virtual float GetBlendValue(float currDis)
+	{
+		return Mathf.Clamp01( (distance - currDis) / distance );
 	}
 
 

@@ -45,6 +45,8 @@ public class Fly : MonoBehaviour
 	public float dropSpeed = 1;
 
 	public bool isDrop;
+
+	public bool isFlip;
 	// Use this for initialization
 	[ContextMenu("Run")]
 	void DebugRun()
@@ -98,6 +100,10 @@ public class Fly : MonoBehaviour
 		speed.x = sx / t;
 		gravity = (sy * 2.0f) / (t*t);
 		speed.y =   gravity * t;
+		if( isFlip )
+		{
+			speed.x = -speed.x;
+		}
 		Debug.Log( speed +"  "+relativePos +"   "+gravity+"  "+sy+"    "+transform.position+"   "+targetPos);
 		return speed;
 	}
@@ -122,7 +128,7 @@ public class Fly : MonoBehaviour
 			Vector3 pos = transform.position;
 			pos.y -= Time.deltaTime * dropSpeed;
 			transform.position = pos;
-			if( transform.position.y <= -120 )
+			if( transform.position.y <= -50 )
 			{
 				Destroy( gameObject );
 			}

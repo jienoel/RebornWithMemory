@@ -11,21 +11,25 @@ public class FlyNeeds : MonoBehaviour
 
 	public List<Fly> needsType;
 
-	public Action<int> OnNeedTimeOut;
-	public Action OnFinish;
+	public Action<int,int> OnNeedTimeOut;
+	public Action<int> OnFinish;
+	public Action OnSpawnFinished;
 	public bool isFinished;
 
 	public bool isStarted;
 
 
-	public void ProcessNeeds(List<FlyObjType> needs)
+	public void ProcessNeeds(List<FlyObjType> needs, int flyIndex)
 	{
+		StopAllCoroutines();
+		hasHitByOther = false;
+		this.flyIndex = flyIndex;
 		isFinished = false;
 		isStarted = true;
 		needsType = new List<Fly>();
 		int i = 0;
 		StartCoroutine( GenerateFly( needs, i , showInterval) );
-		Invoke("OnTimeOut" , timeout );
+		
 		
 	}
 
@@ -38,22 +42,32 @@ public class FlyNeeds : MonoBehaviour
 		flyObj.transform.localScale = Level2.Instance.tutor.iconPoses[i].localScale;
 		flyObj.gameObject.SetActive( true );
 		needsType.Add( flyObj );
-		Debug.Log( "---------> start generate :"+flyObj.flyObjType +"   "+ needs[i] );
+		Debug.Log(  Time.realtimeSinceStartup + "   " +"---------> start generate :"+flyObj.flyObjType +"   "+ needs[i] );
 		i++;
 		if( i < needs.Count )
 			StartCoroutine( GenerateFly( needs, i, showInterval ) );
+		else
+		{
+			if( OnSpawnFinished != null )
+				OnSpawnFinished();
+			StartCoroutine( OnTimeOut ());
+		}
 	}
 
+	public int flyIndex;
+
+	public bool hasHitByOther;
 	// Update is called once per frame
 	void Update () {
 		
 	}
 
-	public bool OnFit(FlyObjType flyObjType)
+	public bool OnFit(FlyObjType flyObjType, bool isOther)
 	{
+		
 		if( needsType.Count == 0 )
 		{
-			Debug.LogError( "Miss 0 " + flyObjType);
+			Debug.LogError( Time.realtimeSinceStartup + "   " + "Miss 0 " + flyObjType);
 			return false;
 		}
 	
@@ -61,23 +75,24 @@ public class FlyNeeds : MonoBehaviour
 		Fly find = needsType[0]; 
 		if( find.flyObjType == flyObjType )
 		{
-			Debug.Log( "========================>hit "+ flyObjType);
+			Debug.Log( Time.realtimeSinceStartup + "   " + "========================>hit "+ flyObjType);
 			needsType.RemoveAt( 0 );
 			GameObject findObject = find.gameObject;
 			find.gameObject.SetActive( false );
 			Destroy( find );
 			Destroy( findObject );
+			hasHitByOther |= isOther;
 			if( needsType.Count == 0 )
 			{
 				isFinished = true;
 				if( OnFinish != null )
 				{
-					OnFinish();
+					OnFinish(flyIndex);
 				}
 			}
 			return true;
 		}
-		Debug.LogError( "miss:"+ find.flyObjType+"   provide:"+ flyObjType );
+		Debug.LogError( Time.realtimeSinceStartup + "   " + "miss:"+ find.flyObjType+"   provide:"+ flyObjType );
 		return false;
 	}
 
@@ -87,10 +102,11 @@ public class FlyNeeds : MonoBehaviour
 		StopAllCoroutines();
 		OnFinish = null;
 		OnNeedTimeOut = null;
+		OnSpawnFinished = null;
 		foreach( Fly find in needsType )
 		{
 			
-			Debug.LogError( "Destroy "+find.flyObjType );
+			Debug.LogError( Time.realtimeSinceStartup + "   " + "Destroy "+find.flyObjType );
 			GameObject findObject = find.gameObject;
 			find.gameObject.SetActive( false );
 			Destroy( find );
@@ -99,12 +115,13 @@ public class FlyNeeds : MonoBehaviour
 		needsType.Clear();
 	}
 
-	void OnTimeOut()
+	IEnumerator OnTimeOut()
 	{
+		yield return new WaitForSeconds( timeout );
 		isFinished = true;
 		if( OnNeedTimeOut != null )
 		{
-			OnNeedTimeOut(needsType.Count);
+			OnNeedTimeOut(needsType.Count, flyIndex);
 		}
 	}
 }

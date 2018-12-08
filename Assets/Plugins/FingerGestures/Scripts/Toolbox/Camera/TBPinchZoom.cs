@@ -30,7 +30,7 @@ public class TBPinchZoom : MonoBehaviour
     float defaultOrthoSize = 0;
     float idealZoomAmount = 0;
     float zoomAmount = 0;
-
+    
     public Vector3 DefaultPos
     {
         get { return defaultPos; }
@@ -71,7 +71,9 @@ public class TBPinchZoom : MonoBehaviour
                 case ZoomMethod.FOV:
                     if( GetComponent<Camera>().orthographic )
                     {
-                        GetComponent<Camera>().orthographicSize = Mathf.Max( defaultOrthoSize - zoomAmount, 0.1f );
+                        //defaultOrthoSize = 11;
+                        float tmp = defaultOrthoSize - zoomAmount;
+                        GetComponent<Camera>().orthographicSize = Mathf.Clamp( tmp , 5.66f,11 );
                     }
                     else
                     {
