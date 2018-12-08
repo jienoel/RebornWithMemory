@@ -1,12 +1,18 @@
 ﻿using UnityEngine;
 
-public class Level1Player : Obj
+public class Level5Player : Obj
 {
-    public Level1 mgr;
     public float maxSpeed = 3f;
-    private Vector3 v;
     int dragFingerIndex = -1;
     Vector2 tapPos = Vector2.zero;
+    
+    private Rigidbody2D rb;
+
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0;
+    }
 
     void OnDrag(DragGesture gesture)
     {
@@ -31,16 +37,14 @@ public class Level1Player : Obj
             var direction = (gesture.Position - tapPos).normalized;
 
             var maxV = direction * maxSpeed;
-            v = Vector3.Lerp(v, maxV, 0.01f);
-            transform.position += v * Time.deltaTime;
+            rb.velocity = Vector3.Lerp(rb.velocity, maxV, 0.01f);
         }
 
         if (gesture.Phase == ContinuousGesturePhase.Ended)
         {
             dragFingerIndex = -1;
             tapPos = Vector2.zero;
-            v = Vector3.zero;
+            rb.velocity = Vector3.zero;
         }
     }
-
 }
