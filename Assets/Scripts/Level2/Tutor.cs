@@ -86,7 +86,8 @@ public class Tutor : MonoBehaviour
 			}
 			flyNeeds.timeout = needsSpan;
 			flyIndex++;
-			lockFlyIndex = flyIndex;Debug.Log( Time.realtimeSinceStartup + "   " + "0000000----------------->generate" +flyIndex );
+			lockFlyIndex = flyIndex;
+			//Debug.Log( Time.realtimeSinceStartup + "   " + "0000000----------------->generate" +flyIndex );
 			flyNeeds.OnSpawnFinished = () =>
 			{
 				if(needAutoSpawn && autoSpawnPlayer != null )
@@ -101,7 +102,7 @@ public class Tutor : MonoBehaviour
 
 	void OnFinish(int index)
 	{
-		Debug.Log( Time.realtimeSinceStartup + "   " + "----------------->Onfinish" +index );
+		//Debug.Log( Time.realtimeSinceStartup + "   " + "----------------->Onfinish" +index );
 		if( index != flyIndex )
 		{
 			Debug.LogError( "index != flyIndex" );
@@ -123,7 +124,7 @@ public class Tutor : MonoBehaviour
 
 	void OnNeedTimeOut(int leftCount,int index)
 	{
-		Debug.Log( Time.realtimeSinceStartup + "   " + "11111111111----------------->Timeout   " +index );
+		//Debug.Log( Time.realtimeSinceStartup + "   " + "11111111111----------------->Timeout   " +index );
 		if( index != flyIndex )
 		{
 			Debug.LogError( "index != flyIndex" );
@@ -169,7 +170,7 @@ public class Tutor : MonoBehaviour
 
 	void OnHit()
 	{
-		if( Level2.Instance.currDis > 0.3f )
+		if( Level2.Instance.currDis > 0f )
 		{
 			Vector3 pos = targetStonePos;
 			Vector3 tutorPos = targetPos;

@@ -42,7 +42,7 @@ public class FlyNeeds : MonoBehaviour
 		flyObj.transform.localScale = Level2.Instance.tutor.iconPoses[i].localScale;
 		flyObj.gameObject.SetActive( true );
 		needsType.Add( flyObj );
-		Debug.Log(  Time.realtimeSinceStartup + "   " +"---------> start generate :"+flyObj.flyObjType +"   "+ needs[i] );
+	//	Debug.Log(  Time.realtimeSinceStartup + "   " +"---------> start generate :"+flyObj.flyObjType +"   "+ needs[i] );
 		i++;
 		if( i < needs.Count )
 			StartCoroutine( GenerateFly( needs, i, showInterval ) );
@@ -67,7 +67,7 @@ public class FlyNeeds : MonoBehaviour
 		
 		if( needsType.Count == 0 )
 		{
-			Debug.LogError( Time.realtimeSinceStartup + "   " + "Miss 0 " + flyObjType);
+		//	Debug.LogError( Time.realtimeSinceStartup + "   " + "Miss 0 " + flyObjType);
 			return false;
 		}
 	
@@ -75,7 +75,7 @@ public class FlyNeeds : MonoBehaviour
 		Fly find = needsType[0]; 
 		if( find.flyObjType == flyObjType )
 		{
-			Debug.Log( Time.realtimeSinceStartup + "   " + "========================>hit "+ flyObjType);
+		//	Debug.Log( Time.realtimeSinceStartup + "   " + "========================>hit "+ flyObjType);
 			needsType.RemoveAt( 0 );
 			GameObject findObject = find.gameObject;
 			find.gameObject.SetActive( false );
@@ -92,7 +92,7 @@ public class FlyNeeds : MonoBehaviour
 			}
 			return true;
 		}
-		Debug.LogError( Time.realtimeSinceStartup + "   " + "miss:"+ find.flyObjType+"   provide:"+ flyObjType );
+		//Debug.LogError( Time.realtimeSinceStartup + "   " + "miss:"+ find.flyObjType+"   provide:"+ flyObjType );
 		return false;
 	}
 
@@ -106,7 +106,7 @@ public class FlyNeeds : MonoBehaviour
 		foreach( Fly find in needsType )
 		{
 			
-			Debug.LogError( Time.realtimeSinceStartup + "   " + "Destroy "+find.flyObjType );
+		//	Debug.LogError( Time.realtimeSinceStartup + "   " + "Destroy "+find.flyObjType );
 			GameObject findObject = find.gameObject;
 			find.gameObject.SetActive( false );
 			Destroy( find );

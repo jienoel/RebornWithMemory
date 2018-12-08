@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
 	{
 		if( hit )
 		{
-			if( Level2.Instance.currDis > 0.3f )
+			if( Level2.Instance.currDis > 0f )
 			{
 				targetStonePos.x += xRightSpeed;
 				targetStonePos.y += yUpSpeed;

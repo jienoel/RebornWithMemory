@@ -7,6 +7,10 @@ Properties {
 }
  
 SubShader {	
+  Tags {Queue = Transparent}
+    Cull Off
+    ZWrite Off
+    Blend SrcAlpha OneMinusSrcAlpha
 	Pass {
 		SetTexture[_MainTex]
 		SetTexture[_Texture2] { 

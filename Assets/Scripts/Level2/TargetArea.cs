@@ -19,7 +19,7 @@ public class TargetArea : MonoBehaviour
 	{
 		
 		Fly fly = other.transform.parent.GetComponent<Fly>();
-		Debug.Log( "On Trigger Enter  " + (fly == null).ToString()+"    "+(onFlyHit == null).ToString() );
+	//	Debug.Log( "On Trigger Enter  " + (fly == null).ToString()+"    "+(onFlyHit == null).ToString() );
 		if( fly != null  && onFlyHit!=null)
 		{
 			onFlyHit( fly );

@@ -60,8 +60,8 @@ Shader "Sprites/Overlay"
 {
     fixed4 c = SampleSpriteTexture (IN.texcoord) * IN.color;
     fixed4 second = SampleOverlaySpriteTexture(IN.texcoord);
-    second.rgb *= c.a;
-    c.rgb *= c.a;
+   // second.rgb *= c.a;
+   // c.rgb *= c.a;
     c.rgb = c.rgb +second.rgb*_Blend;
     return c;
 }

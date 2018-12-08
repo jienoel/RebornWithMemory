@@ -104,7 +104,7 @@ public class Fly : MonoBehaviour
 		{
 			speed.x = -speed.x;
 		}
-		Debug.Log( speed +"  "+relativePos +"   "+gravity+"  "+sy+"    "+transform.position+"   "+targetPos);
+	//	Debug.Log( speed +"  "+relativePos +"   "+gravity+"  "+sy+"    "+transform.position+"   "+targetPos);
 		return speed;
 	}
 
