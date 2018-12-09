@@ -23,6 +23,7 @@ public class Level2:MonoBehaviour
 	public float maxDisX;
 	public float initBlend;
 	public Canvas sceneLoader;
+	public float delayLoadNext;
 	
 public virtual	void Awake()
 	{
@@ -120,8 +121,19 @@ public virtual	void Awake()
 		if( success )
 		{
 			tutor.uiCanvas.gameObject.SetActive( false );
-			sceneLoader.gameObject.SetActive( true );
+			//sceneLoader.gameObject.SetActive( true );
+			StartCoroutine( DelayLoadNextLevel(5) );
 		}
+		else
+		{
+			StartCoroutine( DelayLoadNextLevel( 2 ) );
+		}
+	}
+
+	IEnumerator DelayLoadNextLevel(int level )
+	{
+		yield return new WaitForSeconds( delayLoadNext );
+		sceneLoader.GetComponent<SceneLoader>().Load( level );
 	}
 
 	public virtual float GetBlendValue(float currDis)

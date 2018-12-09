@@ -87,6 +87,7 @@ public class PlayerShadow : MonoBehaviour
 
     private void OnDisable()
     {
+        if(meshFilter != null)
         meshFilter.sharedMesh = null;
     }
 }

@@ -60,7 +60,8 @@ public class Level4 : Level2
 	public void LoadNextLevel()
 	{
 		//pinchZoom.DefaultOrthoSize = maxCameraSize;
-		sceneLoader.gameObject.SetActive( true );
+		//sceneLoader.gameObject.SetActive( true );
+		sceneLoader.GetComponent<SceneLoader>().Load( 5 );
 	}
 
 	public override float GetBlendValue( float currDis )
