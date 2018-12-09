@@ -252,6 +252,8 @@ MonoBehaviour:
   target: {fileID: 0}
   flyObjType: 4
   caterType: 0
+  minY: -50
+  maxY: 50
   t: 1
   deltaDis: 0.1
   gravity: -1
@@ -493,6 +495,8 @@ MonoBehaviour:
   target: {fileID: 0}
   flyObjType: 1
   caterType: 0
+  minY: -50
+  maxY: 50
   t: 1
   deltaDis: 0.1
   gravity: -1
@@ -614,6 +618,8 @@ MonoBehaviour:
   target: {fileID: 0}
   flyObjType: 2
   caterType: 0
+  minY: -50
+  maxY: 50
   t: 1
   deltaDis: 0.1
   gravity: -1
@@ -796,10 +802,12 @@ MonoBehaviour:
   target: {fileID: 0}
   flyObjType: 0
   caterType: 0
+  minY: -10
+  maxY: 5
   t: 1
   deltaDis: 0.1
   gravity: -1
-  dropSpeed: -1
+  dropSpeed: 1
   isDrop: 0
   isFlip: 0
 --- !u!212 &43097411
@@ -915,9 +923,10 @@ MonoBehaviour:
   - {fileID: 1806085632}
   - {fileID: 584151454}
   showIndex: 0
-  flyDelay: 0.1
+  flyDelay: 0.05
   needFlyList: []
   flyingList: []
+  needPopFly: 1
 --- !u!95 &56845315
 Animator:
   serializedVersion: 3
@@ -1374,10 +1383,12 @@ MonoBehaviour:
   target: {fileID: 0}
   flyObjType: 1
   caterType: 0
+  minY: -10
+  maxY: 5
   t: 1
   deltaDis: 0.1
   gravity: -1
-  dropSpeed: -1
+  dropSpeed: 1
   isDrop: 0
   isFlip: 0
 --- !u!212 &213137047
@@ -1488,8 +1499,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -642070749
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2471e918548644b4e914ef21374d9836, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1605,6 +1616,8 @@ MonoBehaviour:
   target: {fileID: 0}
   flyObjType: 4
   caterType: 0
+  minY: -50
+  maxY: 50
   t: 1
   deltaDis: 0.1
   gravity: -1
@@ -2212,10 +2225,12 @@ MonoBehaviour:
   target: {fileID: 0}
   flyObjType: 3
   caterType: 0
+  minY: -10
+  maxY: 5
   t: 1
   deltaDis: 0.1
   gravity: -1
-  dropSpeed: -1
+  dropSpeed: 1
   isDrop: 0
   isFlip: 0
 --- !u!212 &584151455
@@ -2477,6 +2492,8 @@ MonoBehaviour:
   target: {fileID: 0}
   flyObjType: 2
   caterType: 0
+  minY: -50
+  maxY: 50
   t: 1
   deltaDis: 0.1
   gravity: -1
@@ -2740,6 +2757,8 @@ MonoBehaviour:
   target: {fileID: 0}
   flyObjType: 3
   caterType: 0
+  minY: -50
+  maxY: 50
   t: 1
   deltaDis: 0.1
   gravity: -1
@@ -3022,6 +3041,8 @@ MonoBehaviour:
   target: {fileID: 0}
   flyObjType: 1
   caterType: 0
+  minY: -50
+  maxY: 50
   t: 1
   deltaDis: 0.1
   gravity: -1
@@ -3607,6 +3628,8 @@ MonoBehaviour:
   target: {fileID: 0}
   flyObjType: 3
   caterType: 0
+  minY: -50
+  maxY: 50
   t: 1
   deltaDis: 0.1
   gravity: -1
@@ -3797,6 +3820,8 @@ MonoBehaviour:
   target: {fileID: 0}
   flyObjType: 0
   caterType: 0
+  minY: -50
+  maxY: 50
   t: 1
   deltaDis: 0.1
   gravity: -1
@@ -4027,6 +4052,8 @@ MonoBehaviour:
   target: {fileID: 0}
   flyObjType: 4
   caterType: 0
+  minY: -50
+  maxY: 50
   t: 1
   deltaDis: 0.1
   gravity: -1
@@ -4254,6 +4281,8 @@ MonoBehaviour:
   target: {fileID: 0}
   flyObjType: 0
   caterType: 0
+  minY: -50
+  maxY: 50
   t: 1
   deltaDis: 0.1
   gravity: -1
@@ -5155,10 +5184,12 @@ MonoBehaviour:
   target: {fileID: 0}
   flyObjType: 2
   caterType: 0
+  minY: -10
+  maxY: 5
   t: 1
   deltaDis: 0.1
   gravity: -1
-  dropSpeed: -1
+  dropSpeed: 1
   isDrop: 0
   isFlip: 0
 --- !u!212 &1459676656
@@ -5299,6 +5330,8 @@ MonoBehaviour:
   target: {fileID: 0}
   flyObjType: 3
   caterType: 0
+  minY: -50
+  maxY: 50
   t: 1
   deltaDis: 0.1
   gravity: -1
@@ -5562,6 +5595,8 @@ MonoBehaviour:
   target: {fileID: 0}
   flyObjType: 2
   caterType: 0
+  minY: -50
+  maxY: 50
   t: 1
   deltaDis: 0.1
   gravity: -1
@@ -6564,6 +6599,7 @@ MonoBehaviour:
   lockFlyIndex: -1
   autoSpawnPlayer: {fileID: 0}
   needAutoSpawn: 0
+  enableDuplateGen: 0
 --- !u!114 &1644169527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6727,6 +6763,8 @@ MonoBehaviour:
   target: {fileID: 0}
   flyObjType: 1
   caterType: 0
+  minY: -50
+  maxY: 50
   t: 1
   deltaDis: 0.1
   gravity: -1
@@ -7328,10 +7366,12 @@ MonoBehaviour:
   target: {fileID: 0}
   flyObjType: 4
   caterType: 0
+  minY: -10
+  maxY: 5
   t: 1
   deltaDis: 0.1
   gravity: -1
-  dropSpeed: -1
+  dropSpeed: 1
   isDrop: 0
   isFlip: 0
 --- !u!212 &1806085633
@@ -7846,6 +7886,8 @@ MonoBehaviour:
   target: {fileID: 0}
   flyObjType: 0
   caterType: 0
+  minY: -50
+  maxY: 50
   t: 1
   deltaDis: 0.1
   gravity: -1
@@ -8241,8 +8283,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -642070749
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 68e35cc17394646b9bdb4d998392c3d6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -23,12 +23,18 @@ public class Player : MonoBehaviour
 	public int showIndex;
 	public float flyDelay = 0.1f;
 	public List<Fly> needFlyList;
-	public Fly[] flyingList;
+	public List<Fly> flyingList;
+	public bool needPopFly = true;
 	private void Start()
 	{
-		targetStonePos = baseStore.position;
-		targetPos = transform.position;
+		if( casterType == CasterType.player )
+		{
+			targetStonePos = baseStore.position;
+			targetPos = transform.position;
+		}
+		
 		needFlyList = new List<Fly>();
+		flyingList = new List<Fly>();
 	}
 
 	public void PopFlyObject( FlyObjType flyType )
@@ -40,13 +46,16 @@ public class Player : MonoBehaviour
 			Transform trans = iconPoses[showIndex % 3];
 			fly.transform.position = trans.position;
 			fly.transform.localScale = trans.localScale;
+			fly.caterType = casterType;
 			fly.gameObject.SetActive( true );
+			fly.flyObjType = flyType;
 			needFlyList.Add( fly );
 			showIndex++;
 			//fly.dropSpeed = -fly.dropSpeed;
 			if( showIndex % 3 == 0 )
 			{
 				int index = 0;
+				flyingList.AddRange( needFlyList );
 				StartCoroutine( Flying(index , needFlyList.ToArray() ));
 				needFlyList.Clear();
 			}
@@ -59,24 +68,33 @@ public class Player : MonoBehaviour
 
 	public void OnTutorNeedsTimeout()
 	{
+	
 		foreach( var fly in flyingList )
 		{
 			fly.OnHit( false );
 		}
-		foreach( var fly in needFlyList )
+		flyingList.Clear();
+		/*foreach( var fly in needFlyList )
 		{
 			fly.OnHit( false );
 		}
+		needFlyList.Clear();*/
+		
+		
 	}
 
 	IEnumerator Flying(int i, Fly[] flies)
 	{
 		yield return new WaitForSeconds( flyDelay );
 		Fly fly = flies[i];
-		Level2.Instance.tutor.OnFlyHit( fly );
+		if( flyingList.Contains( fly ) )
+		{
+			flyingList.Remove( fly );
+			Level2.Instance.tutor.OnFlyHit( fly );
+		}
 		i++;
 		
-		if( i < 3 )
+		if( i < flies.Length )
 		{
 			StartCoroutine( Flying( i, flies ) );
 		}
@@ -90,7 +108,7 @@ public class Player : MonoBehaviour
 
 	public void CastFlyObject(FlyObjType flyType)
 	{
-		if( casterType == CasterType.player )
+		if( casterType == CasterType.player && needPopFly)
 		{
 			PopFlyObject( flyType );
 		}
@@ -131,9 +149,9 @@ public class Player : MonoBehaviour
 
 	private void Update()
 	{
-		if( !Level2.Instance.isLevelFinished )
+		if( !Level2.Instance.isLevelFinished)
 		{
-			if(Vector3.Distance( baseStore.position, targetStonePos ) > deltaPos )
+			if(casterType == CasterType.player && Vector3.Distance( baseStore.position, targetStonePos ) > deltaPos )
 			{
 				baseStore.position = Vector3.Lerp( baseStore.position, targetStonePos, Time.deltaTime*speed );
 			}

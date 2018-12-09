@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets._2D;
 
 public class Level4 : Level2
 {
 	public int visible;
 	public Camera camera;
+	public Camera2DFollow camera2DFollow;
+	public Transform newTargetSpotPos;
+	public float delayLoadNextLevel;
 	public override void Start()
 	{
 		base.Start();
@@ -27,25 +31,32 @@ public class Level4 : Level2
 		if(success )
 		{
 			tutor.uiCanvas.gameObject.SetActive( false );
-			GetComponent<PinchRecognizer>().UseSendMessage = true;
+			camera2DFollow.target = newTargetSpotPos;
+
 		}
 	}
 
 	public override void Update()
 	{
 		base.Update();
-		if( isLevelFinished )
+		if( isLevelFinished && !camera2DFollow.isMoving)
 		{
-			if(visible == 0 && Mathf.Abs( camera.orthographicSize  - 11 ) >= 1  )
-			{
-				visible = 1;
-				LoadNextLevel();
-			}
-			
+			StartCoroutine(DelayLoadNextLevel());
 		}
 	}
 
-	
+	IEnumerator DelayLoadNextLevel()
+	{
+		yield return new WaitForSeconds( delayLoadNextLevel );
+		LoadNextLevel();
+	}
+
+	public override void OnDestroy()
+	{
+		base.OnDestroy();
+		StopAllCoroutines();
+	}
+
 	public void LoadNextLevel()
 	{
 		//pinchZoom.DefaultOrthoSize = maxCameraSize;

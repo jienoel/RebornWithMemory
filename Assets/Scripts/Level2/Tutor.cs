@@ -35,6 +35,8 @@ public class Tutor : MonoBehaviour
 	public Player autoSpawnPlayer;
 
 	public bool needAutoSpawn;
+
+	public bool enableDuplateGen;
     // Use this for initialization
     void Start ()
 	{
@@ -82,9 +84,23 @@ public class Tutor : MonoBehaviour
 			int value = Random.Range( Mathf.Min(iconSpawnLimitX, iconPoses.Length ),  Mathf.Min(iconSpawnLimitY, iconPoses.Length )  );
 			
 			List<FlyObjType> needTypes = new List<FlyObjType>();
-			for( int i = 0; i < value; i++ )
+			for( int i = 0; i < value;  )
 			{
-				needTypes.Add(  iconWant[Random.Range(1 ,iconWant.Count )].flyObjType);
+				FlyObjType flyObjType = iconWant[Random.Range( 0, iconWant.Count )].flyObjType;
+				if( enableDuplateGen )
+				{
+					needTypes.Add( flyObjType );
+					i++;
+				}
+				else
+				{
+					if( needTypes.Contains( flyObjType ) )
+					{
+						continue;
+					}
+					needTypes.Add( flyObjType );
+					i++;
+				}
 			}
 			flyNeeds.timeout = needsSpan;
 			flyIndex++;

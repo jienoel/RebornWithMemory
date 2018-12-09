@@ -31,12 +31,17 @@ namespace UnityStandardAssets._2D
         }
 
 
+        public bool isMoving = false;
         // Update is called once per frame
         private void Update()
         {
-            if(target.position.x - transform.position.x - m_offset.x < lookAheadFactor)
+            if( target.position.x - transform.position.x - m_offset.x < lookAheadFactor )
+            {
+                isMoving = false;
                 return;
+            }
             
+            isMoving = true;
             // only update lookahead pos if accelerating or changed direction
             float xMoveDelta = (target.position - m_LastTargetPosition - m_offset).x;
 

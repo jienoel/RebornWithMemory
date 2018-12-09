@@ -26,7 +26,8 @@ public class Fly : MonoBehaviour
 	public TargetArea target;
 	public FlyObjType flyObjType;
 	public CasterType caterType;
-	
+	public float minY = -50;
+	public float maxY = 50;
 	public float t = 1;
 	public float deltaDis = 0.1f;
 	public float gravity = -1f;
@@ -128,7 +129,7 @@ public class Fly : MonoBehaviour
 			Vector3 pos = transform.position;
 			pos.y -= Time.deltaTime * dropSpeed;
 			transform.position = pos;
-			if( transform.position.y <= -50 )
+			if( transform.position.y <= minY || transform.position.y >= maxY )
 			{
 				Destroy( gameObject );
 			}
