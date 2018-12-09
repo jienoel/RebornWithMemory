@@ -27,14 +27,14 @@ public class SceneLoader: MonoBehaviour
         color.a = 0;
         img.color = color;
         img.DOFade(1, 1f).OnComplete(()=> {
-            if (id == 3)
+            if (id == 1 || id == 3)
             {
                 var audioSource = GameObject.Find("Audio Source");
                 audioSource.transform.SetParent(null);
                 DontDestroyOnLoad(audioSource);
             }
             SceneManager.LoadScene(id);
-            if (id == 4)
+            if (id == 2 || id == 4)
             {
                 var audioSource = GameObject.Find("Audio Source");
                 Destroy(audioSource);
