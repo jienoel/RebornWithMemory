@@ -10,7 +10,8 @@ public class Level4 : Level2
 	public Camera2DFollow camera2DFollow;
 	public Transform newTargetSpotPos;
 	public float delayLoadNextLevel;
-	public override void Start()
+
+    public override void Start()
 	{
 		base.Start();
 		camera = GetComponent<Camera>();
@@ -30,7 +31,11 @@ public class Level4 : Level2
 		isLevelFinished = true;
 		if(success )
 		{
-			tutor.uiCanvas.gameObject.SetActive( false );
+            source.clip = successClip;
+            source.loop = false;
+            source.Play();
+
+            tutor.uiCanvas.gameObject.SetActive( false );
 			StartCoroutine( DelayChangeTarget() );
 
 		}
@@ -39,7 +44,7 @@ public class Level4 : Level2
 	public float delayChangeTarget = 1;
 	IEnumerator DelayChangeTarget()
 	{
-		yield return new WaitForSeconds( 1 );
+		yield return new WaitForSeconds( 8 );
 		camera2DFollow.target = newTargetSpotPos;
 	}
 

@@ -904,8 +904,8 @@ MonoBehaviour:
   flyPrefab: {fileID: 1673251708}
   flyPos: {fileID: 827791703}
   baseStore: {fileID: 265423181}
-  yUpSpeed: 0.01
-  xRightSpeed: 0.1
+  yUpSpeed: 0
+  xRightSpeed: 0.6
   targetStonePos: {x: 0, y: 0, z: 0}
   targetPos: {x: 0, y: 0, z: 0}
   deltaPos: 0.1
@@ -1703,7 +1703,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8c7d09c549702409aa7ba984a4bfcda3, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.03529412}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -6714,8 +6714,8 @@ MonoBehaviour:
   - {fileID: 663742252}
   - {fileID: 1247958541}
   - {fileID: 1495553349}
-  yUpSpeed: 0.02
-  xRightSpeed: -0.1
+  yUpSpeed: 0
+  xRightSpeed: -0.5
   targetStonePos: {x: 0, y: 0, z: 0}
   targetPos: {x: 0, y: 0, z: 0}
   deltaPos: 0.1
@@ -8373,7 +8373,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2011065304}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.09, y: 0.33, z: 0}
+  m_LocalPosition: {x: 3.09, y: -0.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1644169525}

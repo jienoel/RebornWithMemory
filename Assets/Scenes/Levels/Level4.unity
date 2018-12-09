@@ -2572,12 +2572,16 @@ MonoBehaviour:
   maxDisX: 4.38
   initBlend: 1
   sceneLoader: {fileID: 83218616}
+  delayLoadNext: 0
+  source: {fileID: 797866926}
+  successClip: {fileID: 8300000, guid: 5ed7f4cd355acfe47834aaf35e1a13b8, type: 3}
   currDis: 0
   visible: 0
   camera: {fileID: 0}
   camera2DFollow: {fileID: 640648501}
   newTargetSpotPos: {fileID: 1294357505}
   delayLoadNextLevel: 0.5
+  delayChangeTarget: 1
 --- !u!114 &640648504
 MonoBehaviour:
   m_ObjectHideFlags: 0

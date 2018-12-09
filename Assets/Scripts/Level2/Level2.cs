@@ -125,8 +125,8 @@ public class Level2:MonoBehaviour
             source.clip = successClip;
             source.Play();
 			tutor.uiCanvas.gameObject.SetActive( false );
-			//sceneLoader.gameObject.SetActive( true );
-			StartCoroutine( DelayLoadNextLevel(5) );
+            sceneLoader.gameObject.SetActive( true );
+            //StartCoroutine( DelayLoadNextLevel(5) );
 		}
 		else
 		{
