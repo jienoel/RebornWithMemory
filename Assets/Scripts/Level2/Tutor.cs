@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -61,7 +61,7 @@ public class Tutor : MonoBehaviour
 		if(flyNeeds.isStarted)
 			return;
 		flyNeeds.isStarted = true;
-		uiCanvas.gameObject.SetActive( true );
+		//uiCanvas.gameObject.SetActive( true );
 		Invoke( "GenerateNeeds", generateInterval );
 		Level2.Instance.OnMoveTutorReady();
 	}
@@ -94,6 +94,8 @@ public class Tutor : MonoBehaviour
 				{
 					autoSpawnPlayer.AutoSpawn( needTypes );
 				}
+				if(!uiCanvas.gameObject.activeSelf)
+				uiCanvas.gameObject.SetActive( true );
 			};
 			flyNeeds.ProcessNeeds( needTypes , flyIndex);
 		}
