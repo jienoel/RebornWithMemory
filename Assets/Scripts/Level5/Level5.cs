@@ -23,7 +23,7 @@ public class Level5 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        var pos = Vector3.Lerp(transform.position, player.transform.position, 0.01f);
+        var pos = Vector3.Lerp(transform.position, player.transform.position, Time.deltaTime);
         pos.z = transform.position.z;
         transform.position = pos;
 
