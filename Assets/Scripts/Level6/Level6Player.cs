@@ -1,30 +1,20 @@
 ﻿using UnityEngine;
 
-public class Level5Player : Obj
+public class Level6Player : Obj
 {
-    public Level5 mgr;
-    public float maxSpeed = 3f;
+    public Level6 mgr;
+    public float maxSpeed = 2f;
     public float rate = 5f;
+    private Vector3 v;
     int dragFingerIndex = -1;
     Vector2 tapPos = Vector2.zero;
-    
-    private Rigidbody2D rb;
-
-    public override void Awake()
-    {
-        base.Awake();
-        rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 0;
-    }
 
     void OnDrag(DragGesture gesture)
     {
         if (mgr.hasFinded)
         {
-            rb.velocity = Vector3.zero;
             return;
         }
-
         FingerGestures.Finger finger = gesture.Fingers[0];
 
         if (dragFingerIndex == -1 && gesture.Phase == ContinuousGesturePhase.Started)
@@ -46,14 +36,16 @@ public class Level5Player : Obj
             var direction = (gesture.Position - tapPos).normalized;
 
             var maxV = direction * maxSpeed;
-            rb.velocity = Vector3.Lerp(rb.velocity, maxV, Time.deltaTime* rate);
+            v = Vector3.Lerp(v, maxV, Time.deltaTime * rate);
+            transform.position += v * Time.deltaTime;
         }
 
         if (gesture.Phase == ContinuousGesturePhase.Ended)
         {
             dragFingerIndex = -1;
             tapPos = Vector2.zero;
-            rb.velocity = Vector3.zero;
+            v = Vector3.zero;
         }
     }
+
 }

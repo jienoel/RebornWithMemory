@@ -7,6 +7,7 @@ public class Obj : MonoBehaviour
     public virtual void Awake()
     {
         var shdowPrefab = Resources.Load<GameObject>("shadow");
-        GameObject.Instantiate(shdowPrefab, transform);
+        var go = GameObject.Instantiate(shdowPrefab, transform);
+        go.name = "shadow";
     }
 }
