@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityStandardAssets._2D;
 
-public class Level4 : Level2
+public class Level4:Level2
 {
 	public int visible;
 	public Camera camera;
-	public Camera2DFollow camera2DFollow;
 	public Transform newTargetSpotPos;
 	public float delayLoadNextLevel;
+
 	public override void Start()
 	{
 		base.Start();
@@ -28,30 +29,44 @@ public class Level4 : Level2
 	public override void OnLevelFinished( bool success )
 	{
 		isLevelFinished = true;
-		if(success )
+		disableGenerate = false;
+		if( success )
 		{
 			tutor.uiCanvas.gameObject.SetActive( false );
-			StartCoroutine( DelayChangeTarget() );
-
+			MoveCameraToTarget();
 		}
 	}
 
-	public float delayChangeTarget = 1;
-	IEnumerator DelayChangeTarget()
+	public Transform cameraTargetPos;
+	public DOTweenAnimation dotweenAnim;
+	private bool needMoving;
+	void MoveCameraToTarget()
 	{
-		yield return new WaitForSeconds( 1 );
-		camera2DFollow.target = newTargetSpotPos;
+		Vector3 localPos = camera.transform.InverseTransformPoint( cameraTargetPos.position );
+		localPos.y = camera.transform.position.y;
+		localPos.z = camera.transform.position.z;
+		Tweener tweener = camera.transform.DOMove( localPos , dotweenAnim.duration);
+		tweener.OnComplete( OnMoveCameraToTarget );
+		//Debug.LogError( "start move camera to target: "+localPos );
 	}
 
-	public override void Update()
+	/*public override void Update()
 	{
 		base.Update();
-		if( isLevelFinished && !camera2DFollow.isMoving)
+		if( needMoving )
 		{
-			StartCoroutine(DelayLoadNextLevel());
+			needMoving.tr
 		}
-	}
+	}*/
 
+	void OnMoveCameraToTarget()
+	{
+		//Debug.LogError( "  on move to target "  +camera.transform.position);
+		dotweenAnim.onComplete.RemoveAllListeners();
+		disableGenerate = false;
+		StartCoroutine(DelayLoadNextLevel());
+	}
+	
 	IEnumerator DelayLoadNextLevel()
 	{
 		yield return new WaitForSeconds( delayLoadNextLevel );

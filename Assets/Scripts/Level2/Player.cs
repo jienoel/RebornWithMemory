@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
 		}
 		else
 		{
-			Debug.LogError( "fly prefab is null! " );
+			Debug.LogError( "fly prefab is null! " + flyType );
 		}
 	}
 
@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
 
 	public void CastFlyObject(FlyObjType flyType)
 	{
-		if( casterType == CasterType.player && needPopFly)
+		if(  needPopFly)
 		{
 			PopFlyObject( flyType );
 		}
@@ -175,7 +175,7 @@ public class Player : MonoBehaviour
 
 	IEnumerator AutoSpawnOnByOne(int i, List<FlyObjType> flyObjTypes)
 	{
-		yield return new WaitForSeconds( 0.3f );
+		yield return new WaitForSeconds( 0.2f );
 		CastFlyObject( flyObjTypes[i++] );
 		if( i < flyObjTypes.Count )
 		{

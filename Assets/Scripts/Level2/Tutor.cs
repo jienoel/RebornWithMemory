@@ -71,7 +71,7 @@ public class Tutor : MonoBehaviour
 
 	void GenerateNeeds()
 	{
-		if( !Level2.Instance.isLevelFinished )
+		if( !Level2.Instance.isLevelFinished  || !Level2.Instance.disableGenerate)
 		{
 			if( lockFlyIndex != -1 )
 			{
@@ -112,7 +112,7 @@ public class Tutor : MonoBehaviour
 				{
 					autoSpawnPlayer.AutoSpawn( needTypes );
 				}
-				if(!uiCanvas.gameObject.activeSelf)
+				if( !Level2.Instance.isLevelFinished &&!uiCanvas.gameObject.activeSelf)
 				uiCanvas.gameObject.SetActive( true );
 			};
 			flyNeeds.ProcessNeeds( needTypes , flyIndex);

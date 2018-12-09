@@ -23,6 +23,7 @@ public class Level2:MonoBehaviour
 	public float maxDisX;
 	public float initBlend;
 	public Canvas sceneLoader;
+	
 	public float delayLoadNext;
 	
 public virtual	void Awake()
@@ -118,6 +119,7 @@ public virtual	void Awake()
 	public virtual void OnLevelFinished(bool success)
 	{
 		isLevelFinished = true;
+		disableGenerate = true;
 		if( success )
 		{
 			tutor.uiCanvas.gameObject.SetActive( false );
@@ -130,6 +132,7 @@ public virtual	void Awake()
 		}
 	}
 
+	public bool disableGenerate;
 	IEnumerator DelayLoadNextLevel(int level )
 	{
 		yield return new WaitForSeconds( delayLoadNext );

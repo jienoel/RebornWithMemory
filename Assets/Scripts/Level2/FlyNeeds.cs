@@ -41,6 +41,7 @@ public class FlyNeeds : MonoBehaviour
 		flyObj.transform.position = Level2.Instance.tutor.iconPoses[i].position;
 		flyObj.transform.localScale = Level2.Instance.tutor.iconPoses[i].localScale;
 		flyObj.gameObject.SetActive( true );
+		flyObj.transform.parent = transform;
 		needsType.Add( flyObj );
 	//	Debug.Log(  Time.realtimeSinceStartup + "   " +"---------> start generate :"+flyObj.flyObjType +"   "+ needs[i] );
 		i++;

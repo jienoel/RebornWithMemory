@@ -29,7 +29,7 @@ namespace UnityStandardAssets._2D
             m_offset = (target.position - transform.position);
             transform.parent = null;
         }
-
+        
 
         public bool isMoving = false;
         // Update is called once per frame
