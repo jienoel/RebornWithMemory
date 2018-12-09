@@ -6,25 +6,20 @@ public class Level3 : MonoBehaviour
     public float GestureScale = 8.0f;
     public Vector2 GestureSpacing = new Vector2( 1.25f, 1.0f );
 
+    public Animation[] anims;
     private bool[] states = {false, false };
     private float time_count = 0;
-
 
     public bool hasFinded = false;
 
     public GameObject sceneLoader;
 
-    private Material bgMat;
-    public float animTime = 1f;
-    private float animTimeCount = 0f;
-
-
     PointCloudRegognizer recognizer;
+    FingerUpEvent e;
 
     void Awake()
     {
         recognizer = GetComponent<PointCloudRegognizer>();
-        bgMat = transform.Find("bg").GetComponent<SpriteRenderer>().material;
     }
 
     void OnCustomGesture( PointCloudGesture gesture )
@@ -50,24 +45,15 @@ public class Level3 : MonoBehaviour
         }
     }
 
+    public void OnFingerUp(FingerUpEvent e)
+    {
+        this.e = e;
+    }
+
     void Update()
     {
-        if (hasFinded && animTimeCount > -1f)
+        if (hasFinded)
         {
-            animTimeCount += Time.deltaTime;
-            animTimeCount = Mathf.Clamp(animTimeCount, 0, animTime);
-            bgMat.SetFloat("_Blend", animTimeCount / animTime);
-
-            if (animTimeCount >= animTime)
-            {
-                animTimeCount = -111;
-                sceneLoader.SetActive(true);
-            }
-        }
-
-        if (states[0] == false && states[1] == false)
-        {
-            //都没画
             return;
         }
 
@@ -78,10 +64,26 @@ public class Level3 : MonoBehaviour
 
             states[0] = false;
             states[1] = false;
+            anims[0].Play();
+            anims[1].Play();
             hasFinded = true;
+            sceneLoader.SetActive(true);
             return;
         }
+        else
+        {
+            if (e != null)
+            {
+                anims[e.Position.x / Screen.width < 0.5f ? 1 : 0].Play();
+                e = null;
+            }
+        }
 
+        if (states[0] == false && states[1] == false)
+        {
+            //都没画
+            return;
+        }
         //画好了一个
 
         time_count -= Time.deltaTime;

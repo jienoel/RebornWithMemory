@@ -122,7 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 48432331}
   - component: {fileID: 48432332}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: c6863c4828c97b3498e8f98485aa0312, type: 2}
+  - {fileID: 2100000, guid: c67a881b656fd2544bc83c9f844af92c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1018,7 +1018,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mgr: {fileID: 0}
-  maxSpeed: 3
+  maxSpeed: 2
+  rate: 5
 --- !u!1 &1759239485
 GameObject:
   m_ObjectHideFlags: 0

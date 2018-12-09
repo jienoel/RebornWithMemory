@@ -3,7 +3,8 @@
 public class Level1Player : Obj
 {
     public Level1 mgr;
-    public float maxSpeed = 3f;
+    public float maxSpeed = 2f;
+    public float rate = 5f;
     private Vector3 v;
     int dragFingerIndex = -1;
     Vector2 tapPos = Vector2.zero;
@@ -35,7 +36,7 @@ public class Level1Player : Obj
             var direction = (gesture.Position - tapPos).normalized;
 
             var maxV = direction * maxSpeed;
-            v = Vector3.Lerp(v, maxV, 0.01f);
+            v = Vector3.Lerp(v, maxV, Time.deltaTime * rate);
             transform.position += v * Time.deltaTime;
         }
 
