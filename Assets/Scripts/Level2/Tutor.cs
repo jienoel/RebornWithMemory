@@ -43,6 +43,7 @@ public class Tutor : MonoBehaviour
 		targetStonePos = baseStone.position;
 	}
 	
+	
 	// Update is called once per frame
 	void Update () {
 		
@@ -78,7 +79,8 @@ public class Tutor : MonoBehaviour
 			flyNeeds.OnNeedTimeOut = OnNeedTimeOut;
 			flyNeeds.OnFinish = OnFinish;
 			
-			int value = Random.Range( Mathf.Min(iconSpawnLimitX, iconPoses.Length-1  ),  Mathf.Min(iconSpawnLimitY, iconPoses.Length )  );
+			int value = Random.Range( Mathf.Min(iconSpawnLimitX, iconPoses.Length ),  Mathf.Min(iconSpawnLimitY, iconPoses.Length )  );
+			
 			List<FlyObjType> needTypes = new List<FlyObjType>();
 			for( int i = 0; i < value; i++ )
 			{
@@ -136,6 +138,7 @@ public class Tutor : MonoBehaviour
 			lockFlyIndex = -1;
 		}
 		flyNeeds.StopNeeds();
+		Level2.Instance.player.OnTutorNeedsTimeout();
 		for( int i = 0; i < leftCount; i++ )
 		{
 			OnMiss();
@@ -143,7 +146,7 @@ public class Tutor : MonoBehaviour
 		Invoke( "GenerateNeeds", generateInterval );
 	}
 
-	void OnFlyHit(Fly fly)
+	public void OnFlyHit(Fly fly)
 	{
 		//Debug.Log( "On target Fly Hit:" +fly.caterType+"   "+fly.flyObjType );
 		bool hit = false;
