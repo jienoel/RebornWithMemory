@@ -31,9 +31,16 @@ public class Level4 : Level2
 		if(success )
 		{
 			tutor.uiCanvas.gameObject.SetActive( false );
-			camera2DFollow.target = newTargetSpotPos;
+			StartCoroutine( DelayChangeTarget() );
 
 		}
+	}
+
+	public float delayChangeTarget = 1;
+	IEnumerator DelayChangeTarget()
+	{
+		yield return new WaitForSeconds( 1 );
+		camera2DFollow.target = newTargetSpotPos;
 	}
 
 	public override void Update()
