@@ -1289,7 +1289,6 @@ MonoBehaviour:
   - {fileID: 1009663190}
   hasFinded: 0
   sceneLoader: {fileID: 485708912}
-  animTime: 1
 --- !u!114 &1851104312
 MonoBehaviour:
   m_ObjectHideFlags: 0

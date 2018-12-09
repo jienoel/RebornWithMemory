@@ -190,8 +190,13 @@ public class Tutor : MonoBehaviour
 	}
 
 	void OnHit()
-	{
-		if( Level2.Instance.currDis > 0f )
+    {
+        foreach(var item in GameObject.FindObjectsOfType<Animator>())
+        {
+            item.SetTrigger("jump");
+        }
+
+        if ( Level2.Instance.currDis > 0f )
 		{
 			Vector3 pos = targetStonePos;
 			Vector3 tutorPos = targetPos;

@@ -23,10 +23,11 @@ public class Level2:MonoBehaviour
 	public float maxDisX;
 	public float initBlend;
 	public Canvas sceneLoader;
-	
 	public float delayLoadNext;
+    public AudioSource source;
+	public AudioClip successClip;
 	
-public virtual	void Awake()
+	public virtual void Awake()
 	{
 		if( Instance==null )
 			Instance = this;
@@ -122,9 +123,11 @@ public virtual	void Awake()
 		disableGenerate = true;
 		if( success )
 		{
+            source.clip = successClip;
+            source.Play();
 			tutor.uiCanvas.gameObject.SetActive( false );
-			//sceneLoader.gameObject.SetActive( true );
-			StartCoroutine( DelayLoadNextLevel(5) );
+            sceneLoader.gameObject.SetActive( true );
+            //StartCoroutine( DelayLoadNextLevel(5) );
 		}
 		else
 		{

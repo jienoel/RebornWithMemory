@@ -32,6 +32,9 @@ public class Level4:Level2
 		disableGenerate = false;
 		if( success )
 		{
+            source.clip = successClip;
+            source.loop = false;
+            source.Play();
 			tutor.uiCanvas.gameObject.SetActive( false );
 			MoveCameraToTarget();
 		}
@@ -47,7 +50,6 @@ public class Level4:Level2
 		localPos.z = camera.transform.position.z;
 		Tweener tweener = camera.transform.DOMove( localPos , dotweenAnim.duration);
 		tweener.OnComplete( OnMoveCameraToTarget );
-		//Debug.LogError( "start move camera to target: "+localPos );
 	}
 
 	/*public override void Update()
