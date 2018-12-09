@@ -2571,12 +2571,14 @@ MonoBehaviour:
   maxDisX: 4.38
   initBlend: 1
   sceneLoader: {fileID: 83218616}
+  delayLoadNext: 0
   currDis: 0
   visible: 0
   camera: {fileID: 0}
   camera2DFollow: {fileID: 640648501}
   newTargetSpotPos: {fileID: 1294357505}
   delayLoadNextLevel: 0.5
+  delayChangeTarget: 1
 --- !u!114 &640648504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5310,7 +5312,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c215eeffbe2c0488eb670fa90d6f1f7b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5711,7 +5713,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1019780869058852, guid: e8fc5b568d0a541d6af7c513b7f8dc10, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 212041448736565698, guid: e8fc5b568d0a541d6af7c513b7f8dc10,
         type: 2}

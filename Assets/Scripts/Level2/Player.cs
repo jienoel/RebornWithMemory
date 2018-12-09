@@ -115,7 +115,7 @@ public class Player : MonoBehaviour
 		else
 		{
 			Fly fly = GameObject.Instantiate( flyPrefab);
-			fly.gameObject.transform.parent = transform.parent;
+		//	fly.gameObject.transform.parent = transform.parent;
 			fly.gameObject.transform.position = flyPos.position;
 			fly.flyObjType = flyType;
 			fly.gameObject.SetActive( true );
