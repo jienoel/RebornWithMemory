@@ -6279,7 +6279,7 @@ MonoBehaviour:
   hasFinded: 0
   animTime: 1
   sceneLoader: {fileID: 1171110563}
-  minCount: 20
+  minCount: 10
 --- !u!81 &1851104308
 AudioListener:
   m_ObjectHideFlags: 0
